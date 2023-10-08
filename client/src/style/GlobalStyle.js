@@ -2,7 +2,7 @@ import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --primary: #646cff;
+    --primary: #454ADE;
     --background-primary: #2A2B2F;
     --background-secundary: #222327;
     --text: #D8DDDE;
@@ -21,7 +21,10 @@ export const GlobalStyle = createGlobalStyle`
   body {
     width: 100%;
     height: 100vh;
-    min-height: 100vh;    
+    min-height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: 'Poppins', sans-serif;
     -webkit-font-smoothing: antialiased;
     background-color: var(--background-primary);

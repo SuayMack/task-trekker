@@ -3,6 +3,7 @@ import styled from "styled-components"
 export const HeaderStyle = styled.header`
   position: fixed;
   top: 0;
+  right: 0;
   width: 100vw;
   color: var(--text);
   display: flex;
