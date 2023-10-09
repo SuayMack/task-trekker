@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 
-import { SignupStyle } from "../signUp/signUpStyle"
+import { SignupStyle } from "../SignUp/signUpStyle"
 
 export default function SignIn() {
   const [formData, setFormData] = useState("")

@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import Home from './pages/Home/Home.jsx'
 import Profile from './pages/Profile/Profile.jsx'
-import SignIn from './pages/signIn/SignIn.jsx'
-import SignUp from './pages/signUp/SignUp.jsx'
+import SignIn from './pages/SignIn/SignIn.jsx'
+import SignUp from './pages/SignUp/SignUp.jsx'
 import Header from './components/Header/Header.jsx'
 
 export default function App() {
