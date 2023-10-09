@@ -1,7 +1,8 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 
-import { SignupStyle } from "./signupStyle"
+import { SignupStyle } from "./signupStyle.js"
+import OAuth from "../../components/OAuth.jsx/OAuth"
 
 export default function SignUp() {
   const [formData, setFormData] = useState("")
@@ -55,6 +56,7 @@ export default function SignUp() {
         <button type="submit" disabled={ loading } className={"signupButton"}>
           { loading ? "Loading..." : "Sign Up" }
         </button> 
+        <OAuth />
       </form>
       <div className="toSignin">
         <p>Já tem uma conta?</p>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux"
 
 import { SignupStyle } from "../SignUp/signUpStyle"
 import { signInStart, signInSuccess, signInFailure } from "../../redux/user/userSlice.js"
+import OAuth from "../../components/OAuth.jsx/OAuth"
 
 export default function SignIn() {
   const [formData, setFormData] = useState("")
@@ -54,6 +55,7 @@ export default function SignIn() {
         <button type="submit" disabled={ loading } className={"signupButton"}>
           { loading ? "Loading..." : "Sign in" }
         </button> 
+        <OAuth />
       </form>
       <div className="toSignin">
         <p>Não tem uma conta?</p>

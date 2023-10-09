@@ -37,6 +37,7 @@ export const SignupStyle = styled.section`
     outline: none;
     background-color: var(--primary);
     color: var(--text);
+    font-size: 16px;
   }
 
   .toSignin {
