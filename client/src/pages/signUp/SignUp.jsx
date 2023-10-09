@@ -1,18 +1,13 @@
-import { Link } from "react-router-dom"
-import { SignupStyle } from "./signupStyle"
+import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
+
+import { SignupStyle } from "./signupStyle"
 
 export default function SignUp() {
   const [formData, setFormData] = useState("")
-
-  // const handleChange = (e) => {
-  //   setFormData(
-  //     {
-  //       ...formData,
-  //       [e.target.id]: e.target.value        
-  //     }
-  //   )    
-  // }
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const handleChange = (e) => {
     setFormData(
@@ -25,16 +20,29 @@ export default function SignUp() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const res = await fetch('/api/auth/signup', 
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData),
-    })
-    const data = await res.json()
-    console.log(data)
+    try {
+      setLoading(true)
+      const res = await fetch('/api/auth/signup', 
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData),
+      })
+      const data = await res.json()
+      if (data.success === false) {
+        setLoading(false)
+        setError(data.message)
+        return
+      }
+      setLoading(false)   
+      setError(null)   
+      navigate('/signin')
+    } catch (error) {
+      setLoading(false)
+      setError(error.message)
+    }
   }
 
   return (
@@ -44,14 +52,18 @@ export default function SignUp() {
         <input type="text" placeholder="Username" id="username" className={"input"} onChange= { handleChange } />
         <input type="email" placeholder="Email" id="email" className={"input"} onChange= { handleChange } />
         <input type="password" name="password" placeholder="Senha" id="password" className={"input"} onChange= { handleChange } />
-        <button type="submit" className={"signupButton"}>Sign Up</button>
+        <button type="submit" disabled={ loading } className={"signupButton"}>
+          { loading ? "Loading..." : "Sign Up" }
+        </button> 
       </form>
       <div className="toSignin">
         <p>Já tem uma conta?</p>
         <Link to={"/signin"}>
           <span className={"signinLink"}>Sign In</span>
         </Link>
+        
       </div>
+      { error && <p className={"error"}>{ error }</p>}
     </SignupStyle>
   )
 }

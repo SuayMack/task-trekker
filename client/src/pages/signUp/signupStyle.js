@@ -49,5 +49,12 @@ export const SignupStyle = styled.section`
 
   .signinLink {
     color: var(--primary);
+    font-weight: bold;
+  }
+
+  .error {
+    color: red;
+    text-align: start;
+    padding: 10px;
   }
 `
