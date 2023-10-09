@@ -12,10 +12,15 @@ export default function Header() {
       <form>
         <input type="text" placeholder="Pesquisar..." className={"input"}  />
         <FaSistrix className={ "icon" } /> 
-      </form>   
-      <Link to={"/signin"}>
-        <p>SignIn</p>
-      </Link>   
+      </form>  
+      <div className={"links"}>
+        <Link to={"/signup"}>
+          <p>Cadastre-se</p>
+        </Link>   
+        <Link to={"/signin"}>
+          <p>Login</p>
+        </Link>         
+      </div> 
     </HeaderStyle>
     
   )

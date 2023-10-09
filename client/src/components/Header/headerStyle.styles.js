@@ -31,6 +31,13 @@ export const HeaderStyle = styled.header`
     border-radius: 10px;
   }
 
+  .links {
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 20px;
+  }
+
   .calendarContainer {
     display: flex;
     align-items: center;
