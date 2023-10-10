@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import { SignupStyle } from "../SignUp/signUpStyle"
+import { SignupStyle } from "../SignUp/signUpStyle.js"
 import { signInStart, signInSuccess, signInFailure } from "../../redux/user/userSlice.js"
 import OAuth from "../../components/OAuth.jsx/OAuth"
 
@@ -48,12 +48,12 @@ export default function SignIn() {
 
   return (
     <SignupStyle>
-      <h1>Sign In</h1>
+      <h1>Login</h1>
       <form onSubmit={ handleSubmit } className={"signup"}>
         <input type="email" placeholder="Email" id="email" className={"input"} onChange= { handleChange } />
         <input type="password" name="password" placeholder="Senha" id="password" className={"input"} onChange= { handleChange } />
         <button type="submit" disabled={ loading } className={"signupButton"}>
-          { loading ? "Loading..." : "Sign in" }
+          { loading ? "Loading..." : "Login" }
         </button> 
         <OAuth />
       </form>

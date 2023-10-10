@@ -54,14 +54,14 @@ export default function SignUp() {
         <input type="email" placeholder="Email" id="email" className={"input"} onChange= { handleChange } />
         <input type="password" name="password" placeholder="Senha" id="password" className={"input"} onChange= { handleChange } />
         <button type="submit" disabled={ loading } className={"signupButton"}>
-          { loading ? "Loading..." : "Sign Up" }
+          { loading ? "Loading..." : "Cadastrar" }
         </button> 
         <OAuth />
       </form>
       <div className="toSignin">
         <p>Já tem uma conta?</p>
         <Link to={"/signin"}>
-          <span className={"signinLink"}>Sign In</span>
+          <span className={"signinLink"}>Login</span>
         </Link>
         
       </div>

@@ -10,6 +10,12 @@ export const SignupStyle = styled.section`
     padding: 20px;
   }
 
+  img {
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
+  }
+
   .signup {
     display: flex;
     flex-direction: column;
@@ -51,6 +57,10 @@ export const SignupStyle = styled.section`
   .signinLink {
     color: var(--primary);
     font-weight: bold;
+  }
+
+  .deleteAccount {
+    color: orange;
   }
 
   .error {
