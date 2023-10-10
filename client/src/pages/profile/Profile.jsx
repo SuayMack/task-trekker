@@ -8,7 +8,7 @@ export default function Profile() {
     <SignupStyle>
       <h1>Perfil</h1>
       <form className={"signup"}>
-        <img src={currentUser.avatar} alt="perfil" />
+        <img src={currentUser.avatar} alt="perfil" className={ "avatarProfile" } />
         <input type="text" placeholder="Username" id="username" className={"input"} />
         <input type="email" placeholder="Email" id="email" className={"input"} />
         <input type="password" name="password" placeholder="Senha" id="password" className={"input"} />

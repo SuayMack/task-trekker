@@ -10,10 +10,18 @@ export const SignupStyle = styled.section`
     padding: 20px;
   }
 
-  img {
+  .avatar {
     border-radius: 100px;
     width: 50px;
     height: 50px;
+    cursor: pointer;
+  }
+
+  .avatarProfile {
+    border-radius: 100px;
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
   }
 
   .signup {

@@ -21,7 +21,7 @@ export default function Header() {
         </Link> 
         <Link to={"/profile"}>
         { currentUser ? (
-          <img src={currentUser.avatar} alt="profile" />
+          <img src={currentUser.avatar} alt="profile" className={ "avatar" } />
         ) : (          
           <p>Login</p>
         )}  
