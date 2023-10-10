@@ -45,7 +45,7 @@ export const HeaderStyle = styled.header`
     gap: 10px;
   }
 
-  .img {
+  img {
     border-radius: 100px;
     width: 50px;
     height: 50px;
