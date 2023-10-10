@@ -54,9 +54,9 @@ export default function Profile() {
         <p>
           {fileUploadError ? (
             <span className={"error"}>Erro ao carregar a imagem (a imagem deve ter até 2Mb).</span>
-            ) : filePerc > 0 && filePerc < 100 ? (
-              <span className={"progress"}>Carregando... {filePerc}%</span>
-            ) : filePerc === 100 ? (<span className={"success"}>Imagem carregada com sucesso</span>) : ""
+          ) : filePerc > 0 && filePerc < 100 ? (
+            <span className={"progress"}>Carregando... {filePerc}%</span>
+          ) : filePerc === 100 ? (<span className={"success"}>Imagem carregada com sucesso</span>) : ""
           }
         </p>
         <input type="text" placeholder="Username" id="username" className={"input"} />
