@@ -69,11 +69,26 @@ export const SignupStyle = styled.section`
 
   .deleteAccount {
     color: orange;
+    cursor: pointer;
+  }
+
+  .error, .progress, .success {
+    text-align: start;
+    padding: 10px;
+    font-size: smaller;
   }
 
   .error {
     color: red;
-    text-align: start;
-    padding: 10px;
   }
+
+  .progress {
+    color: blue;
+  }
+
+  .success {
+    color: green;
+  }
+  
+
 `
