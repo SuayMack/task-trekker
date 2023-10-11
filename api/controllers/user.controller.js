@@ -1,3 +1,5 @@
+import bcryptjs from 'bcryptjs';
+
 import { errorHandler } from '../utils/error.js'
 import User from './../models/user.model.js'
 
@@ -6,7 +8,8 @@ export const test = (req, res) => {
 }
 
 export const updateUser = async (req, res, next) => {
-  if(req.user.id !== req.params.id) return next(errorHandler(401, 'Não autorizado'))
+  if(req.user.id !== req.params.id) 
+    return next(errorHandler(401, 'Não autorizado'))
   try {
     if(req.body.password) {
       req.body.password = bcryptjs.hashSync(req.body.password, 10)

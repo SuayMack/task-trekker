@@ -1,7 +1,7 @@
-import { errorHandler } from '../utils/error.js'
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
+import { errorHandler } from '../utils/error.js'
 import User from '../models/user.model.js'
 
 export const signup = async (req, res, next) => {
@@ -17,7 +17,6 @@ export const signup = async (req, res, next) => {
 }
 
 export const signin = async (req, res, next) => {
-  
   //desestruturar email e password
   const { email, password } = req.body
   try {
@@ -53,7 +52,7 @@ export const google = async (req, res, next) => {
       const { password: pass, ...rest } = user._doc
       res.cookie('access_token', token, { httpOnly: true })
         .status(200)
-        .json(user)
+        .json(rest)
       ;
     }else {
       //generar senha aleatória porque o password é obrigatório e se a pessoa fizer login com o google, vai dar erro
