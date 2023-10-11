@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import { SignupStyle } from "../SignUp/signUpStyle.js"
+import { SignupStyle } from "../style/signupStyle.js"
 import { signInStart, signInSuccess, signInFailure } from "../../redux/user/userSlice.js"
 import OAuth from "../../components/OAuth.jsx/OAuth"
 

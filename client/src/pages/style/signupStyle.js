@@ -5,6 +5,7 @@ export const SignupStyle = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 15px;
 
   h1 {
     padding: 20px;
@@ -29,7 +30,7 @@ export const SignupStyle = styled.section`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
   }
 
   .input {
@@ -54,9 +55,19 @@ export const SignupStyle = styled.section`
     font-size: 16px;
   }
 
-  .toSignin {
+  .buttonCreateTodoList {
     width: 300px;
     padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    background-color: green;
+    color: var(--text);
+    font-size: 16px;
+  }
+
+  .toSignin {
+    width: 300px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -68,7 +79,7 @@ export const SignupStyle = styled.section`
   }
 
   .deleteAccount {
-    color: orange;
+    color: red;
     cursor: pointer;
   }
 

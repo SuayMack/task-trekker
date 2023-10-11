@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 
-import { SignupStyle } from "./signupStyle.js"
+import { SignupStyle } from "../style/signupStyle.js"
 import OAuth from "../../components/OAuth.jsx/OAuth"
 
 export default function SignUp() {
