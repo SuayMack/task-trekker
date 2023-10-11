@@ -4,10 +4,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
 
 import { app } from './../../firebase';
-import { SignupStyle } from './../SignUp/signupStyle.js'
-import { updateUserStart, updateUserSuccess, updateUserFailure } from "../../redux/user/userSlice.js"
-
-
+import { SignupStyle } from "../SignUp/signUpStyle.js"
+import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess } from "../../redux/user/userSlice.js"
 export default function Profile() {
   const fileRef = useRef(null)
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -87,12 +85,31 @@ export default function Profile() {
     }
   }
 
+  const handleDeleteUser = async () => {
+    try {
+      dispatch(deleteUserStart())
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
+        method: 'DELETE',
+      })
+      const data = res.json()
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message))
+        return
+      }
+      dispatch(deleteUserSuccess(data))
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message))
+    }
+  }
+
   return (
     <SignupStyle>
       <h1>Perfil</h1>
       <form onSubmit={handleSubmit} className={"signup"}>
         <input onChange={(e) => setFile(e.target.files[0])} type='file' ref={fileRef} hidden accept='image/*'/>
         <img src={formData.avatar || currentUser.avatar} alt="perfil" className={"avatarProfile"} onClick={() => fileRef.current.click()} />
+
+        {/* erro ao carregar a imagem */}
         <p>
           {fileUploadError ? (
             <span className={"error"}>Erro ao carregar a imagem (a imagem deve ter até 2Mb).</span>
@@ -101,15 +118,18 @@ export default function Profile() {
           ) : filePerc === 100 ? (<span className={"success"}>Imagem carregada com sucesso</span>) : ""
           }
         </p>
+
         <input type="text" placeholder="Username" onChange={handleChange} id="username" defaultValue={currentUser.username} className={"input"} />
         <input type="email" placeholder="Email" onChange={handleChange} id="email" defaultValue={currentUser.email} className={"input"} />
         <input type="password" name="password" placeholder="Senha" onChange={handleChange} id="password" className={"input"} />
         <button type="submit" className={"signupButton"}>Atualizar</button>
       </form>
       <div className="toSignin">
-        <span className={"deleteAccount"}>Deletar conta</span>
+        <span onClick={ handleDeleteUser } className={"deleteAccount"}>Deletar conta</span>
         <span className={"signinLink"}>Sair</span>
       </div>
+
+      <p>{updateSuccess ? "Conta atualizada com sucesso!" : ""}</p>
     </SignupStyle>
   )
 }
