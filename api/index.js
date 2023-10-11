@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser'
 
 import userRouter from './routes/user.route.js'
 import authRouter from './routes/auth.route.js'
-import todoRouter from './routes/todoList.route.js'
+import todoRouter from './routes/todolist.route.js'
 
 dotenv.config()
 

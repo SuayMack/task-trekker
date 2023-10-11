@@ -4,8 +4,9 @@ import { useSelector, useDispatch } from "react-redux"
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
 
 import { app } from './../../firebase';
-import { SignupStyle } from "../SignUp/signUpStyle.js"
+import { SignupStyle } from "../style/signupStyle.js"
 import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStart} from "../../redux/user/userSlice.js"
+import { Link } from "react-router-dom";
 export default function Profile() {
   const fileRef = useRef(null)
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -136,9 +137,14 @@ export default function Profile() {
         <input type="text" placeholder="Username" onChange={handleChange} id="username" defaultValue={currentUser.username} className={"input"} />
         <input type="email" placeholder="Email" onChange={handleChange} id="email" defaultValue={currentUser.email} className={"input"} />
         <input type="password" name="password" placeholder="Senha" onChange={handleChange} id="password" className={"input"} />
+        
         <button type="submit" className={"signupButton"}>Atualizar</button>
+
       </form>
-      <div className="toSignin">
+      <Link to={"/create-todo-list"}>
+        <button type="submit" className={"buttonCreateTodoList"}>Criar tarefa</button>
+      </Link>
+      <div className={"toSignin"}>
         <span onClick={handleDeleteUser} className={"deleteAccount"}>Deletar conta</span>
         <span onClick={handleSignOut} className={"signinLink"}>Sair</span>
       </div>

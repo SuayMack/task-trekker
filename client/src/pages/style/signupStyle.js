@@ -100,6 +100,21 @@ export const SignupStyle = styled.section`
   .success {
     color: green;
   }
+
+  .todoList {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .todoStatus {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap:2px
+  }
   
 
 `
