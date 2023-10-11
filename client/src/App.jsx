@@ -6,17 +6,19 @@ import SignIn from './pages/SignIn/SignIn.jsx'
 import SignUp from './pages/SignUp/SignUp.jsx'
 import Header from './components/Header/Header.jsx'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx'
+import CreateTodoList from './pages/CreateTodoList/CreateTodoList.jsx'
 
 export default function App() {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signin" element={<SignIn />} />
+        <Route path="/" element={<SignIn />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route element={<PrivateRoute />} >
           <Route path="/profile" element={<Profile />} />
+          <Route path="/create-todo-list" element={<CreateTodoList />} />
         </Route>
       </Routes>
     </BrowserRouter>
