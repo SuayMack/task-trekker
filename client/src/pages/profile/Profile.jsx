@@ -10,12 +10,12 @@ import { updateUserStart, updateUserSuccess, updateUserFailure } from "../../red
 
 export default function Profile() {
   const fileRef = useRef(null)
-  const { currentUser } = useSelector((state) => state.user);
+  const { currentUser, loading, error } = useSelector((state) => state.user);
   const [file, setFile] = useState(undefined)
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false)
   const [formData, setFormData] = useState({})
-  const [ setUpdateSuccess] = useState(false);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
 
   const dispatch = useDispatch()
 
