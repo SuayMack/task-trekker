@@ -5,7 +5,7 @@ import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/
 
 import { app } from './../../firebase';
 import { SignupStyle } from "../SignUp/signUpStyle.js"
-import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess } from "../../redux/user/userSlice.js"
+import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStart} from "../../redux/user/userSlice.js"
 export default function Profile() {
   const fileRef = useRef(null)
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -91,7 +91,21 @@ export default function Profile() {
       const res = await fetch(`/api/user/delete/${currentUser._id}`, {
         method: 'DELETE',
       })
-      const data = res.json()
+      const data = await res.json()
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message))
+        return
+      }
+      dispatch(deleteUserSuccess(data))
+    } catch (error) {
+      dispatch(deleteUserFailure(error.message))
+    }
+  }
+  const handleSignOut = async () => {
+    try {
+      dispatch(signOutUserStart())
+      const res = await fetch('/api/auth/signout')
+      const data = await res.json()
       if (data.success === false) {
         dispatch(deleteUserFailure(data.message))
         return
@@ -125,8 +139,8 @@ export default function Profile() {
         <button type="submit" className={"signupButton"}>Atualizar</button>
       </form>
       <div className="toSignin">
-        <span onClick={ handleDeleteUser } className={"deleteAccount"}>Deletar conta</span>
-        <span className={"signinLink"}>Sair</span>
+        <span onClick={handleDeleteUser} className={"deleteAccount"}>Deletar conta</span>
+        <span onClick={handleSignOut} className={"signinLink"}>Sair</span>
       </div>
 
       <p>{updateSuccess ? "Conta atualizada com sucesso!" : ""}</p>
