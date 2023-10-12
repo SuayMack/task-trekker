@@ -9,7 +9,7 @@ const todoListSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  completed: {
+  status: {
     type: String,
     required: true
   },
