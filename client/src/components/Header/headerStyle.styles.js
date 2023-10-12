@@ -1,13 +1,14 @@
 import styled from "styled-components"
 
 export const HeaderStyle = styled.header`
-width: 100vw;
+    width: 100vw;
     position: relative;
     color: var(--text);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 25px;
+    padding: 25px;
+    top: 39px;
 
   h1, p {
     color: var(--text);

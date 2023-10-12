@@ -21,7 +21,6 @@ export const GlobalStyle = createGlobalStyle`
   body {
     width: 100%;
     height: 100vh;
-    min-height: 100vh; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,6 +28,7 @@ export const GlobalStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     background-color: var(--background-primary);
     color: var(--text);
+    overflow-x: hidden;
   }
 
   ol, ul {

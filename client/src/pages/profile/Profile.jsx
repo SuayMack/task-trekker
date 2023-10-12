@@ -118,11 +118,21 @@ export default function Profile() {
             <h1>Suas tarefas</h1>
             {userTodoslist.map((todolist) => (
               <div key={todolist._id} className={"showTodoLinks"}>
-                <Link to={`/todolist/${todolist._id}`} className="showTodoLink" >
-                  <li className={"showTodoLi"}>Título: {todolist.title}</li>
+                <div>
+                  <Link to={`/todolist/${todolist._id}`} className="showTodoLink" >
+                    <li className={"showTodoLi"}>Título: {todolist.title}</li>
+                  </Link>
+                  <Link to={`/todolist/${todolist._id}`} className="showTodoLink" >
                   <li className={"showTodoLi"}>Descrição: {todolist.description}</li>
-                  {/* <li className="showTodoLi">Data: {todolist.createdAt}</li> */}
-                </Link>
+                  </Link>
+                  <Link to={`/todolist/${todolist._id}`} className="showTodoLink" >
+                  <li className={"showTodoLi"}>Status: {todolist.status}</li>
+                  </Link>
+                </div>
+                <div className={"todolistButtons"}>
+                  <button className={"deleteTodoButton"}>Excluir</button>
+                  <button className={"editTodoButton"}>Editar</button>
+                </div>
               </div>
             ))}
           </div>

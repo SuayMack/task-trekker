@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 export const ProfileStyle = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  padding-right: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    padding: 50px;
 
   .profile {
     display: flex;
@@ -97,25 +97,57 @@ export const ProfileStyle = styled.div`
     transition: 0.3s;
     width: 50%;
     border-radius: 10px;
+    width: fit-content
   }
   .showTodosList > h1 {
     text-align: center;
   }
 
   .showTodoLinks {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 20px;
     background-color: var(--background-secundary);
     border-radius: 10px;
-    margin: 10px;
+    margin: 20px;
   }
 
   li.showTodoLi {
     color: var(--text);
-    background-color: var(--background-light);
     padding: 10px;
+
+  }
+
+  li.showTodoLi:hover {
+    background: var(--caption);
   }
 
   .profileLinkButton {
     padding: 10px;
+  }
+
+  .todolistButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .deleteTodoButton, .editTodoButton {
+    width: fit-content;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;     
+  }
+
+  .deleteTodoButton{
+    color: red;
+  }
+
+  .editTodoButton {
+    color: green;
   }
 `
