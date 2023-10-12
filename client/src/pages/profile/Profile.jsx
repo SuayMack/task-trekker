@@ -1,12 +1,15 @@
 import { useRef, useState, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
 
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
 
-import { app } from './../../firebase';
-import { SignupStyle } from "../style/signupStyle.js"
-import { updateUserStart, updateUserSuccess, updateUserFailure, deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStart} from "../../redux/user/userSlice.js"
-import { Link } from "react-router-dom";
+import { app } from './../../firebase'
+import { ButtonGlobalStyle } from "../style/buttonStyle.js"
+import { updateUserStart, updateUserSuccess, updateUserFailure } from "../../redux/user/userSlice.js"
+import { ProfileStyle } from "./profileStyle";
+import { AiOutlineArrowDown } from "react-icons/ai";
+
 export default function Profile() {
   const fileRef = useRef(null)
   const { currentUser, loading, error } = useSelector((state) => state.user);
@@ -14,7 +17,9 @@ export default function Profile() {
   const [filePerc, setFilePerc] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false)
   const [formData, setFormData] = useState({})
-  const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [updateSuccess, setUpdateSuccess] = useState(false)
+  const [ShowTodoslistError, setShowTodoslistError] = useState(false)
+  const [userTodoslist, setUserTodoslist] = useState([])
 
   const dispatch = useDispatch()
 
@@ -41,7 +46,7 @@ export default function Profile() {
         setFileUploadError(true)
       },
       () => {
-        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => 
+        getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
           setFormData({ ...formData, avatar: downloadURL })
         )
       }
@@ -79,77 +84,78 @@ export default function Profile() {
       //caso a atualização seja bem sucedida
       //atualiza o estado do usuário
       dispatch(updateUserSuccess(data))
-     //seta o estado de atualização como success
-     setUpdateSuccess(true)
+      //seta o estado de atualização como success
+      setUpdateSuccess(true)
     } catch (error) {
       dispatch(updateUserFailure(error.message))
     }
   }
 
-  const handleDeleteUser = async () => {
+  const handleShowTodoslist = async () => {
     try {
-      dispatch(deleteUserStart())
-      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
-        method: 'DELETE',
-      })
+      console.log(currentUser._id)
+      setShowTodoslistError(false)
+      const res = await fetch(`/api/user/todolist/${currentUser._id}`)
+      console.log(res)
       const data = await res.json()
       if (data.success === false) {
-        dispatch(deleteUserFailure(data.message))
+        setShowTodoslistError(true)
         return
       }
-      dispatch(deleteUserSuccess(data))
+      setUserTodoslist(data)
     } catch (error) {
-      dispatch(deleteUserFailure(error.message))
+      setShowTodoslistError(true)
     }
-  }
-  const handleSignOut = async () => {
-    try {
-      dispatch(signOutUserStart())
-      const res = await fetch('/api/auth/signout')
-      const data = await res.json()
-      if (data.success === false) {
-        dispatch(deleteUserFailure(data.message))
-        return
-      }
-      dispatch(deleteUserSuccess(data))
-    } catch (error) {
-      dispatch(deleteUserFailure(error.message))
-    }
+
   }
 
   return (
-    <SignupStyle>
-      <h1>Perfil</h1>
-      <form onSubmit={handleSubmit} className={"signup"}>
-        <input onChange={(e) => setFile(e.target.files[0])} type='file' ref={fileRef} hidden accept='image/*'/>
-        <img src={formData.avatar || currentUser.avatar} alt="perfil" className={"avatarProfile"} onClick={() => fileRef.current.click()} />
+    <ProfileStyle>
+      <ButtonGlobalStyle />
+      <section className={"profileSection"}>
+        {userTodoslist && userTodoslist.length > 0 && (
+          <div className={"showTodosList"}>
+            <h1>Suas tarefas</h1>
+            {userTodoslist.map((todolist) => (
+              <div key={todolist._id} className={"showTodoLinks"}>
+                <Link to={`/todolist/${todolist._id}`} className="showTodoLink" >
+                  <li className={"showTodoLi"}>Título: {todolist.title}</li>
+                  <li className={"showTodoLi"}>Descrição: {todolist.description}</li>
+                  {/* <li className="showTodoLi">Data: {todolist.createdAt}</li> */}
+                </Link>
+              </div>
+            ))}
+          </div>
+        )}
+      </section>
+      <section className={"profileSection"}>
+        <form onSubmit={handleSubmit} className={"profileForm"}>
+          <input onChange={(e) => setFile(e.target.files[0])} type='file' ref={fileRef} hidden accept='image/*' />
+          <span>Editar <AiOutlineArrowDown /></span>
+          <img src={formData.avatar || currentUser.avatar} alt="perfil" className={"avatarProfile"} onClick={() => fileRef.current.click()} />
 
-        {/* erro ao carregar a imagem */}
-        <p>
-          {fileUploadError ? (
-            <span className={"error"}>Erro ao carregar a imagem (a imagem deve ter até 2Mb).</span>
-          ) : filePerc > 0 && filePerc < 100 ? (
-            <span className={"progress"}>Carregando... {filePerc}%</span>
-          ) : filePerc === 100 ? (<span className={"success"}>Imagem carregada com sucesso</span>) : ""
-          }
-        </p>
+          <p>
+            {fileUploadError ? (
+              <span className={"error"}>Erro ao carregar a imagem (a imagem deve ter até 2Mb).</span>
+            ) : filePerc > 0 && filePerc < 100 ? (
+              <span className={"progress"}>Carregando... {filePerc}%</span>
+            ) : filePerc === 100 ? (<span className={"success"}>Imagem carregada com sucesso</span>) : ""
+            }
+          </p>
+          <input type="text" placeholder="Username" onChange={handleChange} id="username" defaultValue={currentUser.username} className={"profileInput"} />
+          <input type="email" placeholder="Email" onChange={handleChange} id="email" defaultValue={currentUser.email} className={"profileInput"} />
+          <input type="password" name="password" placeholder="Senha" onChange={handleChange} id="password" className={"profileInput"} />
+          <button type="submit" className={"updateButtonStyle"}>Atualizar</button>
+        </form>
+        <Link to={"/create-todo-list"} className={"profileLinkButton"}>
+          <button type="submit" className={"createButtonStyle"}>Criar tarefa</button>
+        </Link>
+        <p>{updateSuccess ? "Conta atualizada com sucesso!" : ""}</p>
+        <button onClick={handleShowTodoslist} className={"showButtonStyle"}>Mostrar tarefas</button>
+        <p>{ShowTodoslistError ? "Erro ao mostrar lista de tarefas" : ""}</p>
+      </section>
 
-        <input type="text" placeholder="Username" onChange={handleChange} id="username" defaultValue={currentUser.username} className={"input"} />
-        <input type="email" placeholder="Email" onChange={handleChange} id="email" defaultValue={currentUser.email} className={"input"} />
-        <input type="password" name="password" placeholder="Senha" onChange={handleChange} id="password" className={"input"} />
-        
-        <button type="submit" className={"signupButton"}>Atualizar</button>
 
-      </form>
-      <Link to={"/create-todo-list"}>
-        <button type="submit" className={"buttonCreateTodoList"}>Criar tarefa</button>
-      </Link>
-      <div className={"toSignin"}>
-        <span onClick={handleDeleteUser} className={"deleteAccount"}>Deletar conta</span>
-        <span onClick={handleSignOut} className={"signinLink"}>Sair</span>
-      </div>
-
-      <p>{updateSuccess ? "Conta atualizada com sucesso!" : ""}</p>
-    </SignupStyle>
+    </ProfileStyle>
   )
 }
