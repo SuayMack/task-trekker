@@ -2,6 +2,7 @@ import bcryptjs from 'bcryptjs';
 
 import { errorHandler } from '../utils/error.js'
 import User from './../models/user.model.js'
+import TodoList from '../models/todoList.model.js';
 
 export const test = (req, res) => {
   res.json({ message: '🎉😁 - Api route is working - 🙌'})
@@ -39,5 +40,18 @@ export const deleteUser = async (req, res, next) => {
     res.status(200).json({message: 'Usuário deletado com sucesso'})
   } catch (error) {
     next(errorHandler(404, 'Usuário não encontrado'))
+  }
+}
+
+export const getUserTodoslist = async (req, res, next) => {
+  if(req.user.id === req.params.id) {
+    try {
+      const todoslist = await TodoList.find({ userRef: req.params.id })
+      res.status(200).json(todoslist)
+    } catch (error) {
+      next(error)
+    }
+  }else {
+    return next(errorHandler(401, 'Usuário não autorizado'))
   }
 }
