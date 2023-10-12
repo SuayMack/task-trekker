@@ -11,20 +11,6 @@ export const SignupStyle = styled.section`
     padding: 20px;
   }
 
-  .avatar {
-    border-radius: 100px;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-  }
-
-  .avatarProfile {
-    border-radius: 100px;
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-  }
-
   .signup {
     display: flex;
     flex-direction: column;
@@ -51,17 +37,6 @@ export const SignupStyle = styled.section`
     border: none;
     outline: none;
     background-color: var(--primary);
-    color: var(--text);
-    font-size: 16px;
-  }
-
-  .buttonCreateTodoList {
-    width: 300px;
-    padding: 10px;
-    border-radius: 10px;
-    border: none;
-    outline: none;
-    background-color: green;
     color: var(--text);
     font-size: 16px;
   }
@@ -100,21 +75,5 @@ export const SignupStyle = styled.section`
   .success {
     color: green;
   }
-
-  .todoList {
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .todoStatus {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap:2px
-  }
-  
 
 `

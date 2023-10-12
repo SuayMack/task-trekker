@@ -1,15 +1,13 @@
 import styled from "styled-components"
 
 export const HeaderStyle = styled.header`
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 100vw;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 30px 25px;
+width: 100vw;
+    position: relative;
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 25px;
 
   h1, p {
     color: var(--text);
@@ -38,11 +36,21 @@ export const HeaderStyle = styled.header`
     gap: 20px;
   }
 
-  .calendarContainer {
+  .profileDeleteSignOut {
+    width: 300px;
     display: flex;
     align-items: center;
-    justify-content: right;
-    gap: 10px;
+    justify-content: space-between;
+  }
+
+  .deleteAccount {
+    color: red;
+    cursor: pointer;
+  }
+  
+  .profileSiginButton {
+    color: var(--primary);
+    font-weight: bold;
   }
 
   img {

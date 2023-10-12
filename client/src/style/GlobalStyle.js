@@ -39,4 +39,19 @@ export const GlobalStyle = createGlobalStyle`
     text-decoration: none;
   }
 
+  button {
+    cursor: pointer;
+    width: 300px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    color: var(--text);
+    font-size: 16px;
+  }
+
+  li {
+    list-style: none;
+  }
+
 `
