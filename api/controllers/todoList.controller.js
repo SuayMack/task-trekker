@@ -9,3 +9,20 @@ export const createTodoList = async (req, res, next) => {
     next(errorHandler(404, 'Erro ao criar a lista de tarefas!'))
   }
 }
+
+export const deleteTodoList = async (req, res, next) => {
+  const todolist = await TodoList.findById(req.params.id)
+  if (!todolist) {
+    return next(errorHandler(404, 'Lista de tarefas não encontrada!'))
+  }
+  if(req.user.id !== todolist.userRef.toString()) {
+    return next(errorHandler(401, 'Usuário não autorizado'))
+  }
+  try {
+    await TodoList.findByIdAndDelete(req.params.id)
+    return res.status(200).json({message: 'Lista de tarefas excluída com sucesso!'})
+  } catch (error) {
+    next(errorHandler(404, 'Erro ao excluir a lista de tarefas!'))
+  }
+  
+}

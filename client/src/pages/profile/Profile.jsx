@@ -9,6 +9,7 @@ import { ButtonGlobalStyle } from "../style/buttonStyle.js"
 import { updateUserStart, updateUserSuccess, updateUserFailure } from "../../redux/user/userSlice.js"
 import { ProfileStyle } from "./profileStyle";
 import { AiOutlineArrowDown } from "react-icons/ai";
+import { errorHandler } from "../../../../api/utils/error"
 
 export default function Profile() {
   const fileRef = useRef(null)
@@ -109,6 +110,22 @@ export default function Profile() {
 
   }
 
+  const handleDeleteTodolist = async (todolistId) => {
+    try {
+      const res = await fetch(`/api/todolist/delete/${todolistId}`, {
+        method: 'DELETE',
+      })
+      const data = await res.json()
+      if (data.success === false) {
+        console.loge(data.message)
+        return
+      }
+      setUserTodoslist((prev) => prev.filter((todolist) => todolist._id !== todolistId))
+    } catch (error) {
+      errorHandler(404, 'Erro ao excluir a lista de tarefas!')  
+    }
+  }
+
   return (
     <ProfileStyle>
       <ButtonGlobalStyle />
@@ -130,7 +147,7 @@ export default function Profile() {
                   </Link>
                 </div>
                 <div className={"todolistButtons"}>
-                  <button className={"deleteTodoButton"}>Excluir</button>
+                  <button onClick={()=>handleDeleteTodolist(todolist._id)} className={"deleteTodoButton"}>Excluir</button>
                   <button className={"editTodoButton"}>Editar</button>
                 </div>
               </div>
