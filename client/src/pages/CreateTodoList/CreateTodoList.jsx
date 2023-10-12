@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { SignupStyle } from '../style/signupStyle.js'
+import { CreateTodoListStyle } from './CreateTodoStyle';
 
+import { ButtonGlobalStyle } from './../style/buttonStyle';
 export default function CreateTodoList() {
   const navigate = useNavigate()
   const { currentUser } = useSelector((state) => state.user)
@@ -57,14 +58,14 @@ export default function CreateTodoList() {
   }
 
   return (
-    <SignupStyle>
+    <CreateTodoListStyle>
+      <ButtonGlobalStyle />
       <h1>Create Todo List</h1>
-      <div className={"form"}>
-        <form onSubmit={handleSubmit} className={"signup"}>
+      <div>
+        <form onSubmit={handleSubmit} className={"form"}>
           <input onChange={handleChange} value={formData.title} type="text" id="title" placeholder="Título" maxLength='62' minLength='3' className={"input"} required />
           <textarea onChange={handleChange} value={formData.description} id="description" placeholder="Descrição" className={"input"} cols="30" rows="6"></textarea>
-        
-          <div className={"todoList"}>
+          <div className={"statusList"}>
             <div className={"todoStatus"}>
               <input type="radio" id="a_fazer" onChange={handleChange} checked={formData.status === "a_fazer"} />
               <label htmlFor="a_fazer">A fazer</label>
@@ -78,10 +79,10 @@ export default function CreateTodoList() {
               <label htmlFor="feito">Feito</label>
             </div>
           </div>        
-          <button type="submit" className={"buttonCreateTodoList"}>{loading ? "Carregando..." : "Criar tarefa"}</button>   
+          <button type="submit" className={"createListButtonStyle"}>{loading ? "Carregando..." : "Criar tarefa"}</button>   
           {error && <p className={"error"}>{error}</p>}
         </form>
       </div>
-    </SignupStyle>
+    </CreateTodoListStyle>
   )
 }
