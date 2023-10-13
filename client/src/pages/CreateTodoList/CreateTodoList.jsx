@@ -10,7 +10,7 @@ export default function CreateTodoList() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    status: "a_fazer",
+    status: "A fazer",
     userRef: currentUser._id
   })
 
@@ -67,15 +67,15 @@ export default function CreateTodoList() {
           <textarea onChange={handleChange} value={formData.description} id="description" placeholder="Descrição" className={"input"} cols="30" rows="6"></textarea>
           <div className={"statusList"}>
             <div className={"todoStatus"}>
-              <input type="radio" id="a_fazer" onChange={handleChange} checked={formData.status === "a_fazer"} />
+              <input type="radio" id="a_fazer" onChange={handleChange} checked={formData.status === "A fazer"} />
               <label htmlFor="a_fazer">A fazer</label>
             </div>
             <div className={"todoStatus"}>
-              <input type="radio" id="fazendo" onChange={handleChange} checked={formData.status === "fazendo"} />
+              <input type="radio" id="fazendo" onChange={handleChange} checked={formData.status === "Fazendo"} />
               <label htmlFor="fazendo">Fazendo</label>
             </div>
             <div className={"todoStatus"}>
-              <input type="radio" id="feito" onChange={handleChange} checked={formData.status === "feito"} />
+              <input type="radio" id="feito" onChange={handleChange} checked={formData.status === "Feito"} />
               <label htmlFor="feito">Feito</label>
             </div>
           </div>        
