@@ -48,3 +48,15 @@ export const updateTodoList = async (req, res, next) => {
     next(error);
   }
 }
+
+export const getListing = async (req, res, next) => {
+  try {
+    const todolist = await TodoList.findById(req.params.id)
+    if (!todolist) {
+      return next(errorHandler(404, 'Lista de tarefas não encontrada!'))
+    }
+    res.status(200).json(todolist);
+  } catch (error) {
+    next(errorHandler(404, 'Erro ao encontrar a lista de tarefas!'))
+  }
+}

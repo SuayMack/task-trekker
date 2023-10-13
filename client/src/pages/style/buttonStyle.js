@@ -18,7 +18,7 @@ export const ButtonGlobalStyle = createGlobalStyle`
     background-color: #454ADE;
   }
 
-  .createListButtonStyle {
+  .createListButtonStyle, .updateListButtonStyle {
     background-color: green;
   }
 

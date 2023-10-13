@@ -7,6 +7,7 @@ import SignUp from './pages/SignUp/SignUp.jsx'
 import Header from './components/Header/Header.jsx'
 import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx'
 import CreateTodoList from './pages/CreateTodoList/CreateTodoList.jsx'
+import UpdateTodoList from './pages/UpdateTodolist/UpdateTodolist.jsx'
 
 export default function App() {
   return (
@@ -19,6 +20,7 @@ export default function App() {
         <Route element={<PrivateRoute />} >
           <Route path="/profile" element={<Profile />} />
           <Route path="/create-todo-list" element={<CreateTodoList />} />
+          <Route path="/update-todo-list/:todolistId" element={<UpdateTodoList />} />
         </Route>
       </Routes>
     </BrowserRouter>
