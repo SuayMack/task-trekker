@@ -20,6 +20,7 @@ export default function Profile() {
   const [formData, setFormData] = useState({})
   const [updateSuccess, setUpdateSuccess] = useState(false)
   const [ShowTodoslistError, setShowTodoslistError] = useState(false)
+  const [showTodoslist, setShowTodoslist] = useState()
   const [userTodoslist, setUserTodoslist] = useState([])
 
   const dispatch = useDispatch()
@@ -30,7 +31,7 @@ export default function Profile() {
       handleFileUpload(file);
     }
   }, [file]);
-
+  
   const handleFileUpload = (file) => {
     const storage = getStorage(app);
     const fileName = new Date().getTime() + file.name;
@@ -60,6 +61,7 @@ export default function Profile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+
     try {
       //inicia a atualização
       dispatch(updateUserStart());
@@ -94,12 +96,11 @@ export default function Profile() {
 
   const handleShowTodoslist = async () => {
     try {
-      setShowTodoslistError(false)
       const res = await fetch(`/api/user/todolist/${currentUser._id}`)
       const data = await res.json()
-      if(data.length == 0){
-       console.log(error)
-
+      console.log(data)
+      if (data.length == 0) {
+        setShowTodoslist("{<p>Voce ainda não tem tarefas</p>}")
       }
       if (data.success === false) {
         setShowTodoslistError(true)
@@ -123,7 +124,7 @@ export default function Profile() {
       }
       setUserTodoslist((prev) => prev.filter((todolist) => todolist._id !== todolistId))
     } catch (error) {
-      errorHandler(404, 'Erro ao excluir a lista de tarefas!')  
+      errorHandler(404, 'Erro ao excluir a lista de tarefas!')
     }
   }
 
@@ -141,10 +142,10 @@ export default function Profile() {
                     <li className={"showTodoLi"}>Título: {todolist.title}</li>
                   </Link>
                   <Link to={`/todolist/${todolist._id}`} className="showTodoLink" >
-                  <li className={"showTodoLi"}>Descrição: {todolist.description}</li>
+                    <li className={"showTodoLi"}>Descrição: {todolist.description}</li>
                   </Link>
                   <Link to={`/todolist/${todolist._id}`} className="showTodoLink" >
-                  <li className={"showTodoLi"}>Status: {todolist.status}</li>
+                    <li className={"showTodoLi"}>Status: {todolist.statusType}</li>
                   </Link>
                 </div>
                 <div className={"todolistButtons"}>
@@ -160,9 +161,9 @@ export default function Profile() {
       </section>
       <section className={"profileSection"}>
         <form onSubmit={handleSubmit} className={"profileForm"}>
-         
-            <input onChange={(e) => setFile(e.target.files[0])} type='file' ref={fileRef} hidden accept='image/*' />
-            <div className={"editarAvatarButton"}>
+
+          <input onChange={(e) => setFile(e.target.files[0])} type='file' ref={fileRef} hidden accept='image/*' />
+          <div className={"editarAvatarButton"}>
             <span>Editar <AiOutlineArrowDown /></span>
             <img src={formData.avatar || currentUser.avatar} alt="perfil" className={"avatarProfile"} onClick={() => fileRef.current.click()} />
           </div>
@@ -183,10 +184,10 @@ export default function Profile() {
         <Link to={"/create-todo-list"} className={"profileLinkButton"}>
           <button type="submit" className={"createButtonStyle"}>Criar tarefa</button>
         </Link>
-        <p className='text-red-700 mt-5'>{error ? error : ''}</p>
+        <p>{error ? error : ''}</p>
         <p>{updateSuccess ? "Conta atualizada com sucesso!" : ""}</p>
         <button onClick={handleShowTodoslist} className={"showButtonStyle"}>Mostrar tarefas</button>
-
+        {showTodoslist ? <p className={"qtddTasks"}>Você possui {userTodoslist.length} tarefas.</p> : ""}
         <p>{ShowTodoslistError ? "Erro ao mostrar lista de tarefas" : ""}</p>
       </section>
 
