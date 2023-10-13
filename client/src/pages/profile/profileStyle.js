@@ -95,9 +95,8 @@ export const ProfileStyle = styled.div`
   .showTodosList {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.3s;
-    width: 50%;
+    width: 480px;
     border-radius: 10px;
-    width: fit-content
   }
   .showTodosList > h1 {
     text-align: center;

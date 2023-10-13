@@ -94,20 +94,21 @@ export default function Profile() {
 
   const handleShowTodoslist = async () => {
     try {
-      console.log(currentUser._id)
       setShowTodoslistError(false)
       const res = await fetch(`/api/user/todolist/${currentUser._id}`)
-      console.log(res)
       const data = await res.json()
+      if(data.length == 0){
+       console.log(error)
+
+      }
       if (data.success === false) {
         setShowTodoslistError(true)
-        return
+        console.log(setShowTodoslistError(true))
       }
       setUserTodoslist(data)
     } catch (error) {
       setShowTodoslistError(true)
     }
-
   }
 
   const handleDeleteTodolist = async (todolistId) => {
@@ -185,6 +186,7 @@ export default function Profile() {
         <p className='text-red-700 mt-5'>{error ? error : ''}</p>
         <p>{updateSuccess ? "Conta atualizada com sucesso!" : ""}</p>
         <button onClick={handleShowTodoslist} className={"showButtonStyle"}>Mostrar tarefas</button>
+
         <p>{ShowTodoslistError ? "Erro ao mostrar lista de tarefas" : ""}</p>
       </section>
 
