@@ -1,6 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import Home from './pages/Home/Home.jsx'
 import Profile from './pages/Profile/Profile.jsx'
 import SignIn from './pages/SignIn/SignIn.jsx'
 import SignUp from './pages/SignUp/SignUp.jsx'
@@ -14,8 +13,7 @@ export default function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/home" element={<Home />} />
+        <Route path="/" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route element={<PrivateRoute />} >
           <Route path="/profile" element={<Profile />} />

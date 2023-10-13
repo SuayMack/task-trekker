@@ -26,7 +26,7 @@ export default function SignIn() {
     e.preventDefault()
     try {
       dispatch(signInStart())
-      const res = await fetch('/api/auth/signin', 
+      const res = await fetch('/api/auth/', 
       {
         method: 'POST',
         headers: {
@@ -40,7 +40,7 @@ export default function SignIn() {
         return
       }
       dispatch(signInSuccess(data))
-      navigate('/')
+      navigate('/profile')
     } catch (error) {
       dispatch(signInFailure(error.message))
     }
