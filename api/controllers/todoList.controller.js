@@ -26,3 +26,25 @@ export const deleteTodoList = async (req, res, next) => {
   }
   
 }
+
+export const updateTodoList = async (req, res, next) => {
+  const todolist = await TodoList.findById(req.params.id)
+  if (!todolist) {
+    return next(errorHandler(404, 'Lista de tarefas não encontrada!'))
+  }
+  if(req.user.id !== todolist.userRef) {
+    return next(errorHandler(401, 'Usuário não autorizado'))
+  }
+  console.log(req.body)
+  try {
+    const updatedTodolist = await TodoList.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    )
+    console.log(updatedTodolist)
+    res.status(200).json(updatedTodolist);
+  } catch (error) {
+    next(error);
+  }
+}
