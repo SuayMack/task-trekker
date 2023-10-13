@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { UpdateTodoListStyle } from './UpdateTodolist';
 
 import { ButtonGlobalStyle } from '../style/buttonStyle';
+import { errorHandler } from '../../../../api/utils/error';
 export default function UpdateTodoList() {
   const navigate = useNavigate()
   const params = useParams()
@@ -23,8 +24,7 @@ export default function UpdateTodoList() {
       const res = await fetch(`/api/todolist/get/${todolistId}`)
       const data = await res.json()
       if(data.success === false){
-        console.log(data.message)
-        return
+        console.log(errorHandler(404, 'Erro ao buscar a lista de tarefas!'))
       }
       setFormData(data)
     }
@@ -63,7 +63,7 @@ export default function UpdateTodoList() {
       if(data.success === false){
         setError(data.message)
       }
-      navigate(`/todolist/${data._id}`)
+      navigate("/profile")
     } catch (error) {
       setError(error.message)
       setLoading(false)
