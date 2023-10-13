@@ -16,8 +16,7 @@ export default function CreateTodoList() {
 
   const  [error, setError] = useState(false)
   const [loading, setLoading] = useState(false)
-  console.log(formData)
-
+  
   const handleChange = (e) => {
     if(e.target.id === 'title'){
       setFormData({...formData, title: e.target.value})
@@ -50,7 +49,7 @@ export default function CreateTodoList() {
       if(data.success === false){
         setError(data.message)
       }
-      navigate(`/todolist/${data._id}`)
+      navigate(`/profile`)
     } catch (error) {
       setError(error.message)
       setLoading(false)
@@ -67,15 +66,15 @@ export default function CreateTodoList() {
           <textarea onChange={handleChange} value={formData.description} id="description" placeholder="Descrição" className={"input"} cols="30" rows="6"></textarea>
           <div className={"statusList"}>
             <div className={"todoStatus"}>
-              <input type="radio" id="a_fazer" onChange={handleChange} checked={formData.status === "A fazer"} />
+              <input type="radio" id="a_fazer" onChange={handleChange} checked={formData.status === "a_fazer"} />
               <label htmlFor="a_fazer">A fazer</label>
             </div>
             <div className={"todoStatus"}>
-              <input type="radio" id="fazendo" onChange={handleChange} checked={formData.status === "Fazendo"} />
+              <input type="radio" id="fazendo" onChange={handleChange} checked={formData.status === "fazendo"} />
               <label htmlFor="fazendo">Fazendo</label>
             </div>
             <div className={"todoStatus"}>
-              <input type="radio" id="feito" onChange={handleChange} checked={formData.status === "Feito"} />
+              <input type="radio" id="feito" onChange={handleChange} checked={formData.status === "feito"} />
               <label htmlFor="feito">Feito</label>
             </div>
           </div>        
