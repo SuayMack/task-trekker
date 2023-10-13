@@ -4,7 +4,7 @@ import { errorHandler } from "../utils/error.js"
 export const createTodoList = async (req, res, next) => {
   try {
     const todoList = await TodoList.create(req.body)
-    return res.status(201).json(todoList)    
+    return res.status(201).json(todoList)
   } catch (error) {
     next(errorHandler(404, 'Erro ao criar a lista de tarefas!'))
   }
@@ -15,16 +15,16 @@ export const deleteTodoList = async (req, res, next) => {
   if (!todolist) {
     return next(errorHandler(404, 'Lista de tarefas não encontrada!'))
   }
-  if(req.user.id !== todolist.userRef.toString()) {
+  if (req.user.id !== todolist.userRef.toString()) {
     return next(errorHandler(401, 'Usuário não autorizado'))
   }
   try {
     await TodoList.findByIdAndDelete(req.params.id)
-    return res.status(200).json({message: 'Lista de tarefas excluída com sucesso!'})
+    return res.status(200).json({ message: 'Lista de tarefas excluída com sucesso!' })
   } catch (error) {
     next(errorHandler(404, 'Erro ao excluir a lista de tarefas!'))
   }
-  
+
 }
 
 export const updateTodoList = async (req, res, next) => {
@@ -32,7 +32,7 @@ export const updateTodoList = async (req, res, next) => {
   if (!todolist) {
     return next(errorHandler(404, 'Lista de tarefas não encontrada!'))
   }
-  if(req.user.id !== todolist.userRef) {
+  if (req.user.id !== todolist.userRef) {
     return next(errorHandler(401, 'Usuário não autorizado'))
   }
   console.log(req.body)
@@ -60,3 +60,24 @@ export const getListing = async (req, res, next) => {
     next(errorHandler(404, 'Erro ao encontrar a lista de tarefas!'))
   }
 }
+
+export const getListings = async (req, res, next) => {
+  try {
+    const limit = parseInt(req.query.limit) || 9
+    const startIndex = parseInt(req.query.startIndex) || 0
+    const searchTerm = req.query.searchTerm || ''
+    const statusType = req.query.statusType
+    const sort = req.query.sort || 'createdAt'
+
+    const order = req.query.order || 'desc';
+
+    const listings = await TodoList.find({
+      // title: { $regex: searchTerm, $options: 'i' },
+      statusType:{ $regex: searchTerm, $options: 'i' },
+    }).sort({ [sort]: order }).limit(limit).skip(startIndex);
+
+    return res.status(200).json(listings)
+  } catch (error) {
+    next(error);
+  }
+};
