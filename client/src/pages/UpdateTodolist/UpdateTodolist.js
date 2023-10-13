@@ -26,7 +26,7 @@ export const UpdateTodoListStyle = styled.section`
     font-size: 16px;
   }
 
-  .statusList {
+  .statusTypeList {
     width: 300px;
     display: flex;
     align-items: center;

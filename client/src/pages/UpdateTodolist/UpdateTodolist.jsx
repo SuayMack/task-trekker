@@ -12,7 +12,7 @@ export default function UpdateTodoList() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    status: "a_fazer",
+    statusType: "a_fazer",
     userRef: currentUser._id
   })
   const  [error, setError] = useState(false)
@@ -39,7 +39,7 @@ export default function UpdateTodoList() {
       setFormData({...formData, description: e.target.value})
     }
     if(e.target.id === 'a_fazer' || e.target.id === 'fazendo' || e.target.id === 'feito'){
-      setFormData({...formData, status: e.target.id})
+      setFormData({...formData, statusType: e.target.id})
     }
   }
 
@@ -78,17 +78,17 @@ export default function UpdateTodoList() {
         <form onSubmit={handleSubmit} className={"form"}>
           <input onChange={handleChange} value={formData.title} type="text" id="title" placeholder="Título" maxLength='62' minLength='3' className={"input"} required />
           <textarea onChange={handleChange} value={formData.description} id="description" placeholder="Descrição" className={"input"} cols="30" rows="6"></textarea>
-          <div className={"statusList"}>
+          <div className={"statusTypeList"}>
             <div className={"todoStatus"}>
-              <input type="radio" id="a_fazer" onChange={handleChange} checked={formData.status === "a_fazer"} />
+              <input type="radio" id="a_fazer" onChange={handleChange} checked={formData.statusType === "a_fazer"} />
               <label htmlFor="a_fazer">A fazer</label>
             </div>
             <div className={"todoStatus"}>
-              <input type="radio" id="fazendo" onChange={handleChange} checked={formData.status === "fazendo"} />
+              <input type="radio" id="fazendo" onChange={handleChange} checked={formData.statusType === "fazendo"} />
               <label htmlFor="fazendo">Fazendo</label>
             </div>
             <div className={"todoStatus"}>
-              <input type="radio" id="feito" onChange={handleChange} checked={formData.status === "feito"} />
+              <input type="radio" id="feito" onChange={handleChange} checked={formData.statusType === "feito"} />
               <label htmlFor="feito">Feito</label>
             </div>
           </div>        

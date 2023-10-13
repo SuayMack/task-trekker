@@ -102,7 +102,12 @@ export const ProfileStyle = styled.div`
     text-align: center;
   }
 
+  .showTodoLink {
+    pointer-events: none;
+  }
+
   .showTodoLinks {
+    
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -148,5 +153,11 @@ export const ProfileStyle = styled.div`
 
   .editTodoButton {
     color: green;
+  }
+
+  .qtddTasks {
+    padding: 10px;
+    color: green;
+
   }
 `
