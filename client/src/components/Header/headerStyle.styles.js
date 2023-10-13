@@ -8,7 +8,6 @@ export const HeaderStyle = styled.header`
     align-items: center;
     justify-content: space-between;
     padding: 25px;
-    top: 39px;
 
   h1, p {
     color: var(--text);

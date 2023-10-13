@@ -148,7 +148,9 @@ export default function Profile() {
                 </div>
                 <div className={"todolistButtons"}>
                   <button onClick={()=>handleDeleteTodolist(todolist._id)} className={"deleteTodoButton"}>Excluir</button>
-                  <button className={"editTodoButton"}>Editar</button>
+                  <Link to={`/update-todo-list/${todolist._id}`}>
+                    <button  disabled={loading} className={"editTodoButton"}>Editar</button>
+                  </Link>
                 </div>
               </div>
             ))}
@@ -157,9 +159,12 @@ export default function Profile() {
       </section>
       <section className={"profileSection"}>
         <form onSubmit={handleSubmit} className={"profileForm"}>
-          <input onChange={(e) => setFile(e.target.files[0])} type='file' ref={fileRef} hidden accept='image/*' />
-          <span>Editar <AiOutlineArrowDown /></span>
-          <img src={formData.avatar || currentUser.avatar} alt="perfil" className={"avatarProfile"} onClick={() => fileRef.current.click()} />
+         
+            <input onChange={(e) => setFile(e.target.files[0])} type='file' ref={fileRef} hidden accept='image/*' />
+            <div className={"editarAvatarButton"}>
+            <span>Editar <AiOutlineArrowDown /></span>
+            <img src={formData.avatar || currentUser.avatar} alt="perfil" className={"avatarProfile"} onClick={() => fileRef.current.click()} />
+          </div>
 
           <p>
             {fileUploadError ? (
@@ -177,6 +182,7 @@ export default function Profile() {
         <Link to={"/create-todo-list"} className={"profileLinkButton"}>
           <button type="submit" className={"createButtonStyle"}>Criar tarefa</button>
         </Link>
+        <p className='text-red-700 mt-5'>{error ? error : ''}</p>
         <p>{updateSuccess ? "Conta atualizada com sucesso!" : ""}</p>
         <button onClick={handleShowTodoslist} className={"showButtonStyle"}>Mostrar tarefas</button>
         <p>{ShowTodoslistError ? "Erro ao mostrar lista de tarefas" : ""}</p>

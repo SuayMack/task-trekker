@@ -5,12 +5,11 @@ export const ProfileStyle = styled.div`
     align-items: center;
     justify-content: center;
     gap: 15px;
-    padding: 50px;
 
   .profile {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
    gap: 12px;
    padding: 10px;
   }
@@ -70,11 +69,11 @@ export const ProfileStyle = styled.div`
     background-color: green;
   }
 
-  .profileAside {
+  .editarAvatarButton {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    width: 80%;
   }
 
   .profileSection {
@@ -82,6 +81,7 @@ export const ProfileStyle = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 20px;
   }
 
   .todoLi {
