@@ -13,6 +13,13 @@ export const HeaderStyle = styled.header`
     color: var(--text);
   }
 
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+  }
+
   form {
     display: flex;
     align-items: center;
@@ -21,7 +28,7 @@ export const HeaderStyle = styled.header`
   }
 
   .icon { 
-    font-size: 30px;
+    font-size: 45px;
   }
 
   .input {
@@ -34,18 +41,6 @@ export const HeaderStyle = styled.header`
     align-items: center;
     justify-content: right;
     gap: 20px;
-  }
-
-  .profileDeleteSignOut {
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .deleteAccount {
-    color: red;
-    cursor: pointer;
   }
   
   .profileSiginButton {
