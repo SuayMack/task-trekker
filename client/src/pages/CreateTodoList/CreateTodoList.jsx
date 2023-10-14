@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { CreateTodoListStyle } from './CreateTodoStyle';
 
-import { ButtonGlobalStyle } from './../style/buttonStyle';
+import { CreateTodoListStyle } from './CreateTodoStyle'
+import { ButtonGlobalStyle } from '../../style/buttonStyle.js'
+
 export default function CreateTodoList() {
   const navigate = useNavigate()
   const { currentUser } = useSelector((state) => state.user)

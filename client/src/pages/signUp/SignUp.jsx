@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 
-import { SignupStyle } from "../style/signupStyle.js"
+import { SignupStyle } from "../style/signInUpStyle.js"
 import OAuth from "../../components/OAuth.jsx/OAuth"
 
 export default function SignUp() {
@@ -49,11 +49,11 @@ export default function SignUp() {
   return (
     <SignupStyle>
       <h1>Sign Up</h1>
-      <form onSubmit={ handleSubmit } className={"signup"}>
+      <form onSubmit={ handleSubmit } className={"signInUpForm"}>
         <input type="text" placeholder="Username" id="username" className={"input"} onChange= { handleChange } />
         <input type="email" placeholder="Email" id="email" className={"input"} onChange= { handleChange } />
         <input type="password" name="password" placeholder="Senha" id="password" className={"input"} onChange= { handleChange } />
-        <button type="submit" disabled={ loading } className={"signupButton"}>
+        <button type="submit" disabled={ loading } className={"signInUpButton"}>
           { loading ? "Loading..." : "Cadastrar" }
         </button> 
         <OAuth />
@@ -63,7 +63,6 @@ export default function SignUp() {
         <Link to={"/signin"}>
           <span className={"signinLink"}>Login</span>
         </Link>
-        
       </div>
       { error && <p className={"error"}>{ error }</p>}
     </SignupStyle>

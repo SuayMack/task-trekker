@@ -62,22 +62,21 @@ export const getListing = async (req, res, next) => {
 }
 
 export const getListings = async (req, res, next) => {
-  try {
-    const limit = parseInt(req.query.limit) || 9
+  try {    
+
     const startIndex = parseInt(req.query.startIndex) || 0
+
     const searchTerm = req.query.searchTerm || ''
-    const statusType = req.query.statusType
-    const sort = req.query.sort || 'createdAt'
 
-    const order = req.query.order || 'desc';
+    const sort ='createdAt'
 
-    const listings = await TodoList.find({
-      // title: { $regex: searchTerm, $options: 'i' },
-      statusType:{ $regex: searchTerm, $options: 'i' },
-    }).sort({ [sort]: order }).limit(limit).skip(startIndex);
+    const order ='desc'
 
-    return res.status(200).json(listings)
+    const todoslist = await TodoList.find({statusType:searchTerm}).sort({[sort]: order}).skip(startIndex)
+
+    console.log(todoslist)
+    return res.status(200).json(todoslist)
   } catch (error) {
-    next(error);
+    next(error)
   }
-};
+}

@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import { UpdateTodoListStyle } from './UpdateTodolist';
 
-import { ButtonGlobalStyle } from '../style/buttonStyle';
+import { ButtonGlobalStyle } from '../../style/buttonStyle';
 import { errorHandler } from '../../../../api/utils/error';
 export default function UpdateTodoList() {
   const navigate = useNavigate()
@@ -12,7 +12,7 @@ export default function UpdateTodoList() {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
-    statusType: "a_fazer",
+    statusType: "",
     userRef: currentUser._id
   })
   const  [error, setError] = useState(false)
