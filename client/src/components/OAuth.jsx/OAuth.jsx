@@ -29,7 +29,7 @@ export default function OAuth() {
       })
       const data = await res.json()
       dispatch(signInSuccess(data))   
-      navigate("/profile")
+      navigate("/")
 
     } catch (error) {
       console.log("Não foi possível realizar o login com o Google", error)

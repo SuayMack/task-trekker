@@ -49,7 +49,7 @@ export default function CreateTodoList() {
       if(data.success === false){
         setError(data.message)
       }
-      navigate(`/profile`)
+      navigate(`/`)
     } catch (error) {
       setError(error.message)
       setLoading(false)

@@ -6,6 +6,7 @@ import { SignupStyle } from "../style/signupStyle.js"
 import { signInStart, signInSuccess, signInFailure } from "../../redux/user/userSlice.js"
 import OAuth from "../../components/OAuth.jsx/OAuth"
 
+
 export default function SignIn() {
   const [formData, setFormData] = useState("")
   const {loading, error} = useSelector((state) => state.user)
@@ -26,7 +27,7 @@ export default function SignIn() {
     e.preventDefault()
     try {
       dispatch(signInStart())
-      const res = await fetch('/api/auth/', 
+      const res = await fetch('/api/auth/signin', 
       {
         method: 'POST',
         headers: {
@@ -40,7 +41,7 @@ export default function SignIn() {
         return
       }
       dispatch(signInSuccess(data))
-      navigate('/profile')
+      navigate("/")
     } catch (error) {
       dispatch(signInFailure(error.message))
     }
