@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import { SignupStyle } from "../style/signInUpStyle.js"
+import { SignStyle } from "../style/signStyle.js"
 import { signInStart, signInSuccess, signInFailure } from "../../redux/user/userSlice.js"
 import OAuth from "../../components/OAuth.jsx/OAuth"
 
@@ -48,7 +48,7 @@ export default function SignIn() {
   }
 
   return (
-    <SignupStyle>
+    <SignStyle>
       <h1>Login</h1>
       <form onSubmit={ handleSubmit } className={"signInUpForm"}>
         <input type="email" placeholder="Email" id="email" className={"input"} onChange= { handleChange } />
@@ -65,6 +65,6 @@ export default function SignIn() {
         </Link> 
       </div>
       { error && <p className={"error"}> {error} </p>}
-    </SignupStyle>
+    </SignStyle>
   )
 }

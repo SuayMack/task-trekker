@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 
-import { SignupStyle } from "../style/signInUpStyle.js"
+import { SignStyle } from "../style/signStyle.js"
 import OAuth from "../../components/OAuth.jsx/OAuth"
 
 export default function SignUp() {
@@ -47,7 +47,7 @@ export default function SignUp() {
   }
 
   return (
-    <SignupStyle>
+    <SignStyle>
       <h1>Sign Up</h1>
       <form onSubmit={ handleSubmit } className={"signInUpForm"}>
         <input type="text" placeholder="Username" id="username" className={"input"} onChange= { handleChange } />
@@ -65,7 +65,7 @@ export default function SignUp() {
         </Link>
       </div>
       { error && <p className={"error"}>{ error }</p>}
-    </SignupStyle>
+    </SignStyle>
   )
 }
 
