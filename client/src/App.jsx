@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import Profile from './pages/Profile/Profile.jsx'
+import Profile from './pages/Profile/Profile'
 import SignIn from './pages/SignIn/SignIn.jsx'
 import SignUp from './pages/SignUp/SignUp.jsx'
 import Header from './components/Header/Header.jsx'
