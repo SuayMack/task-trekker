@@ -2,11 +2,10 @@ import express from 'express'
 import mongoose from "mongoose"
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
-import path from 'path'
 
 import userRouter from './src/routes/user.route.js'
 import authRouter from './src/routes/auth.route.js'
-import todoRouter from './src/routes/todolist.route.js'
+import todoRouter from './src/routes/todoList.route.js'
 
 dotenv.config()
 
@@ -28,7 +27,7 @@ app.listen(port, () => {
 
 app.use('/src/routes/user', userRouter)
 app.use('/src/routes/auth', authRouter)
-app.use('/src/routes/todolist', todoRouter)
+app.use('/src/routes/todoList', todoRouter)
 
 //middleware for errors
 app.use((err, req, res, next) => {
