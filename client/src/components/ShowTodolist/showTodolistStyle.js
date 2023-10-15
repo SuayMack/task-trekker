@@ -2,7 +2,8 @@ import styled from "styled-components";
 
 export const ShowTodolistStyle = styled.section`
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-around;
   padding: 20px;
 
@@ -86,7 +87,7 @@ export const ShowTodolistStyle = styled.section`
     flex-wrap: wrap;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 10px;
-    max-width:70%;
+    justify-content: space-evenly;
   }
 
   .showTodoLink {
