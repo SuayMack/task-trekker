@@ -45,7 +45,6 @@ VITE_FIREBASE_API_KEY = local
 # Deploy
 
 ### Render
-https://datadynamo.onrender.com/clientes
 
 
 Para fazer o deploy desse projeto vc deve ter o NodeJS instalado, nesse projeto utilizamos a versão:
