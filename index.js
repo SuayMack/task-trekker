@@ -4,9 +4,9 @@ import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 import path from 'path'
 
-import userRouter from './src/routes/user.route.js'
-import authRouter from './src/routes/auth.route.js'
-import todoRouter from './src/routes/todolist.route.js'
+import userRouter from './routes/user.route.js'
+import authRouter from './routes/auth.route.js'
+import todoRouter from './routes/todolist.route.js'
 
 dotenv.config()
 
@@ -28,9 +28,9 @@ app.listen(port, () => {
   console.log(`🎉😁 - Server is running on ${port}! - 🙌`)
 })
 
-app.use('/user', userRouter)
-app.use('/auth', authRouter)
-app.use('/todolist', todoRouter)
+app.use('/src/routes/user', userRouter)
+app.use('/src/routes/auth', authRouter)
+app.use('/src/routes/todolist', todoRouter)
 
 app.use(express.static(path.join(__dirname, '/client/dist')))
 
