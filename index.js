@@ -22,8 +22,6 @@ mongoose.connect(process.env.MONGODB_URL)
   .catch((error) => {console.log('😢😢 - Error connecting to MongoDB:', error)})
 ;
 
-const __dirname = path.resolve()
-
 app.listen(port, () => {
   console.log(`🎉😁 - Server is running on ${port}! - 🙌`)
 })
@@ -31,12 +29,6 @@ app.listen(port, () => {
 app.use('/src/routes/user', userRouter)
 app.use('/src/routes/auth', authRouter)
 app.use('/src/routes/todolist', todoRouter)
-
-app.use(express.static(path.join(__dirname, '/client/dist')))
-
-app.get('*', (req, res) => {  
-  res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'))
-})
 
 //middleware for errors
 app.use((err, req, res, next) => {
