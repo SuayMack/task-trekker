@@ -28,9 +28,9 @@ app.listen(port, () => {
   console.log(`🎉😁 - Server is running on ${port}! - 🙌`)
 })
 
-app.use('/api/user', userRouter)
-app.use('/api/auth', authRouter)
-app.use('/api/todolist', todoRouter)
+app.use('/user', userRouter)
+app.use('/auth', authRouter)
+app.use('/todolist', todoRouter)
 
 app.use(express.static(path.join(__dirname, '/client/dist')))
 
