@@ -4,9 +4,9 @@ import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser'
 import path from 'path'
 
-import userRouter from './api/routes/user.route.js'
-import authRouter from './api/routes/auth.route.js'
-import todoRouter from './api/routes/todolist.route.js'
+import userRouter from './routes/user.route.js'
+import authRouter from './routes/auth.route.js'
+import todoRouter from './routes/todolist.route.js'
 
 dotenv.config()
 
