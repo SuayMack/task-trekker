@@ -1,33 +1,14 @@
 import { HeaderStyle } from "./headerStyle.styles"
 import { Link } from "react-router-dom"
-import { useSelector } from "react-redux"
-import {deleteUserFailure, deleteUserStart, deleteUserSuccess, signOutUserStart } from "../../redux/user/userSlice.js"
-import { useDispatch } from "react-redux"
-
-import { FaSistrix } from "react-icons/fa6";
-
+import { useDispatch, useSelector } from "react-redux"
+import { signOutUserStart } from "../../redux/user/userSlice"
+import {deleteUserFailure, deleteUserSuccess} from "../../redux/user/userSlice.js"
 
 export default function Header() {
   const { currentUser } = useSelector((state) => state.user)
-  
+
   const dispatch = useDispatch()
 
-  const handleDeleteUser = async () => {
-    try {
-      dispatch(deleteUserStart())
-      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
-        method: 'DELETE',
-      })
-      const data = await res.json()
-      if (data.success === false) {
-        dispatch(deleteUserFailure(data.message))
-        return
-      }
-      dispatch(deleteUserSuccess(data))
-    } catch (error) {
-      dispatch(deleteUserFailure(error.message))
-    }
-  }
   const handleSignOut = async () => {
     try {
       dispatch(signOutUserStart())
@@ -42,38 +23,35 @@ export default function Header() {
       dispatch(deleteUserFailure(error.message))
     }
   }
+
   return (
     <HeaderStyle>
-      <div>
-      <Link to={"/"}>
-        <h1>TaskTrekker</h1>  
-      </Link>     
-      <form>
-        <input type="text" placeholder="Pesquisar..." className={"input"}  />
-        <FaSistrix className={ "icon" } /> 
-      </form>  
+      <div className={"logo"}>
+        <Link to={"/"}>
+          <h1>TaskTrekker</h1> 
+        </Link>     
       </div>
 
-      <div className={"links"}>
-   
-        <Link to={"/signup"}>
-          {currentUser ? (
-            <div className={"profileDeleteSignOut"}>
-              <span onClick={handleDeleteUser} className={"deleteAccount"}>Deletar conta</span>
-              <span onClick={handleSignOut} className={"profileSiginButton"}>Sair</span>
-            </div>
-            ) : (
-              <p>Cadastre-se</p> 
-            )}
-          
-        </Link> 
-        <Link to='/profile'>
-            {currentUser ? (
-              <img className={ "avatar" } src={currentUser.avatar} alt='perfil'/>
-            ) : (
-              <p>Login</p>
-            )}
-        </Link> 
+      <div className={"links"}> 
+      
+        {currentUser ? (
+          <span onClick={handleSignOut} className={"profileSiginButton"}>Sair</span>
+          ) : (
+          <Link to={"/signup"}>
+            <p>Cadastre-se</p> 
+          </Link> 
+        )}
+        
+        {currentUser ? (
+          <Link to='/profile'>
+            <img className={ "avatar" } src={currentUser.avatar} alt='perfil'/>
+          </Link> 
+        ) : (
+          <Link to='/signin'>
+          <p>Login</p>
+          </Link>
+        )}
+        
       </div> 
     </HeaderStyle>
     

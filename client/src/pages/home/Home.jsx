@@ -1,5 +1,11 @@
+import ShowTodolist from "../../components/ShowTodolist/ShowTodolist";
+
+
 export default function Home() {
-  return (
-    <div>Home</div>
-  )
+ return (
+   <>
+     <ShowTodolist />
+   </>
+ )
+
 }

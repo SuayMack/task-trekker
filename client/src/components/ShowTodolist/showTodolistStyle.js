@@ -1,87 +1,75 @@
 import styled from "styled-components";
 
-export const ProfileStyle = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-
-  .profile {
+export const ShowTodolistStyle = styled.section`
   display: flex;
-  align-items: center;
-  justify-content: center;
-   gap: 12px;
-   padding: 10px;
+  align-items: flex-start;
+  justify-content: space-around;
+  padding: 20px;
+
+  h1 {
+    text-align: center;
   }
 
-  .avatar {
-    border-radius: 100px;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-  }
-
-  .avatarProfile {
-    border-radius: 100px;
-    width: 100px;
-    height: 100px;
-    cursor: pointer;
-  }
-
-  .profileForm {
+  .todolistMenu {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
+    width: 30%;
   }
 
-  .profileInput {
+  .todolistFilter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
+  }
+
+  .todolistFilter button {
+    width: 100%;
+    padding: 5px;
     border-radius: 10px;
     border: none;
     outline: none;
-    width: 300px;
-    background-color: var(--background-light);
     color: var(--text);
+    text-align: center;
     font-size: 16px;
   }
 
-  .error, .progress, .success {
-    text-align: start;
-    padding: 10px;
-    font-size: smaller;
+  .linkButton {
+    width: 90%;
+    padding: 5px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    color: var(--text);
+    text-align: center;
+    font-size: 16px;
   }
 
-  .error {
-    color: red;
+  .todoButtonFilterAll,.todoButtonFilterDo, .todoButtonFilterDone {
+    border-radius: 10px;
+    padding: 5px;
   }
 
-  .progress {
-    color: blue;
+  .todoButtonFilterAll {
+    background-color: red;
   }
-
-  .success {
-    color: green;
+  .todoButtonFilterDo {
+    background-color: orange;
   }
-
- .createButtonStyle {
+  .todoButtonFilterDone {
     background-color: green;
   }
 
-  .editarAvatarButton {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 80%;
-  }
-
-  .profileSection {
+  .todolistButtons {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    gap: 15px;
+  }
+
+  .createTodoList {
+    background-color: green;
   }
 
   .todoLi {
@@ -93,13 +81,12 @@ export const ProfileStyle = styled.div`
   }
 
   .showTodosList {
+    display: flex;
+    padding: 10px;
+    flex-wrap: wrap;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 480px;
     border-radius: 10px;
-  }
-  .showTodosList > h1 {
-    text-align: center;
+    max-width:70%;
   }
 
   .showTodoLink {
@@ -107,14 +94,20 @@ export const ProfileStyle = styled.div`
   }
 
   .showTodoLinks {
-    
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
+    padding: 10px;
     background-color: var(--background-secundary);
     border-radius: 10px;
     margin: 20px;
+    max-width: 280px;
+  }
+
+  .showTodo {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
   }
 
   li.showTodoLi {
@@ -160,4 +153,5 @@ export const ProfileStyle = styled.div`
     color: green;
 
   }
+
 `

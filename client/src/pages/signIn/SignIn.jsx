@@ -2,9 +2,10 @@ import { Link, useNavigate } from "react-router-dom"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
-import { SignupStyle } from "../style/signupStyle.js"
+import { SignupStyle } from "../style/signInUpStyle.js"
 import { signInStart, signInSuccess, signInFailure } from "../../redux/user/userSlice.js"
 import OAuth from "../../components/OAuth.jsx/OAuth"
+
 
 export default function SignIn() {
   const [formData, setFormData] = useState("")
@@ -26,7 +27,7 @@ export default function SignIn() {
     e.preventDefault()
     try {
       dispatch(signInStart())
-      const res = await fetch('/api/auth/', 
+      const res = await fetch('/api/auth/signin', 
       {
         method: 'POST',
         headers: {
@@ -40,7 +41,7 @@ export default function SignIn() {
         return
       }
       dispatch(signInSuccess(data))
-      navigate('/profile')
+      navigate("/")
     } catch (error) {
       dispatch(signInFailure(error.message))
     }
@@ -49,10 +50,10 @@ export default function SignIn() {
   return (
     <SignupStyle>
       <h1>Login</h1>
-      <form onSubmit={ handleSubmit } className={"signup"}>
+      <form onSubmit={ handleSubmit } className={"signInUpForm"}>
         <input type="email" placeholder="Email" id="email" className={"input"} onChange= { handleChange } />
         <input type="password" name="password" placeholder="Senha" id="password" className={"input"} onChange= { handleChange } />
-        <button type="submit" disabled={ loading } className={"signupButton"}>
+        <button type="submit" disabled={ loading } className={"signInUpButton"}>
           { loading ? "Loading..." : "Login" }
         </button> 
         <OAuth />

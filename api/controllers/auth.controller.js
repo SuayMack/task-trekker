@@ -80,3 +80,4 @@ export const signout = async (req, res, next) => {
     next(errorHandler(404, 'Erro ao sair!'))
   }
 }
+

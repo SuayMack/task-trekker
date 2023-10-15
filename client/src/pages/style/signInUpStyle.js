@@ -11,7 +11,7 @@ export const SignupStyle = styled.section`
     padding: 20px;
   }
 
-  .signup {
+  .signInUpForm {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,7 +30,7 @@ export const SignupStyle = styled.section`
     font-size: 16px;
   }
 
-  .signupButton {
+  .signInUpButton {
     width: 300px;
     padding: 10px;
     border-radius: 10px;
@@ -51,29 +51,6 @@ export const SignupStyle = styled.section`
   .signinLink {
     color: var(--primary);
     font-weight: bold;
-  }
-
-  .deleteAccount {
-    color: red;
-    cursor: pointer;
-  }
-
-  .error, .progress, .success {
-    text-align: start;
-    padding: 10px;
-    font-size: smaller;
-  }
-
-  .error {
-    color: red;
-  }
-
-  .progress {
-    color: blue;
-  }
-
-  .success {
-    color: green;
   }
 
 `
