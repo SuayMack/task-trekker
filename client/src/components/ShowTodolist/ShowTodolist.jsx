@@ -62,10 +62,41 @@ export default function ShowTodolist() {
         console.log(setShowTodoslistError(true))
       }
       setUserTodoslist(data)
+      console.log(data)
     } catch (error) {
       setShowTodoslistError(true)
     }
   }
+
+  // const handleFilterAFazer = async () => {
+  //   {userTodoslist && userTodoslist.length > 0 && (
+  //     <div className={"showTodosList"}>
+  //       {userTodoslist.map((todolist) => (
+  //        todolist.statusType = "a_fazer"(
+  //         <div key={todolist._id} className={"showTodoLinks"}>
+  //           <div className={"showTodo"}>
+  //             <Link className="showTodoLink" >
+  //               <li className={"showTodoLi"}>Título: {todolist.title}</li>
+  //             </Link>
+  //             <Link className="showTodoLink" >
+  //               <li className={"showTodoLi"}>Descrição: {todolist.description}</li>
+  //             </Link>
+  //             <Link className="showTodoLink" >
+  //               <li className={"showTodoLi"}>Status: {todolist.statusType = "feito"}</li>
+  //             </Link>
+  //           </div>
+  //           <div className={"todolistButtons"}>
+  //             <button onClick={() => handleDeleteTodolist(todolist._id)} className={"deleteTodoButton"}>Excluir</button>
+  //             <Link to={`/update-todo-list/${todolist._id}`}>
+  //               <button disabled={loading} className={"editTodoButton"}>Editar</button>
+  //             </Link>
+  //           </div>
+  //         </div>
+  //        )
+  //       ))}
+  //     </div>
+  //   )}
+  // }
 
   const handleDeleteTodolist = async (todolistId) => {
     try {
@@ -88,19 +119,21 @@ export default function ShowTodolist() {
       <ButtonGlobalStyle />
       <div className={"todolistMenu"}>
         <h1>Suas tarefas</h1>
+        <div  hidden>
         {userTodoslist.length > 0 && (
           <div className={"todolistFilter"}>
-            <Link to={`search?searchTerm=a_fazer&sort`} className={"linkButton"}>
-              <button className={"todoButtonFilterAll"}>A fazer</button>
+            <Link className={"linkButton"}>
+              <button className={"todoButtonFiltertoDo"}>A fazer</button>
             </Link>
-            <Link to={`search?searchTerm=fazendo&sort`} className={"linkButton"}>
+            <Link className={"linkButton"}>
               <button type="submit" className={"todoButtonFilterDo"}>Fazendo</button>
             </Link>
-            <Link to={`search?searchTerm=feito&sort`} className={"linkButton"}>
+            <Link className={"linkButton"}>
               <button className={"todoButtonFilterDone"}>Feito</button>
             </Link>
           </div>
         )}
+        </div>
         <div className="todolistButtons">
           <button onClick={handleShowTodoslist} className={"showButtonStyle"}>Mostrar tarefas</button>
           <Link to={"/create-todo-list"} >
