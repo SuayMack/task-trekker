@@ -60,7 +60,7 @@ export default function CreateTodoList() {
   return (
     <CreateTodoListStyle>
       <ButtonGlobalStyle />
-      <h1>Create Todo List</h1>
+      <h1>Criar tarefa</h1>
       <div>
         <form onSubmit={handleSubmit} className={"form"}>
           <input onChange={handleChange} value={formData.title} type="text" id="title" placeholder="Título" maxLength='62' minLength='3' className={"input"} required />
