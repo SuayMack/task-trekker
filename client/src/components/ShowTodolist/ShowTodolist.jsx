@@ -3,7 +3,6 @@ import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage"
-
 import { app } from './../../firebase'
 
 import { errorHandler } from "../../../../api/utils/error"
@@ -19,12 +18,13 @@ export default function ShowTodolist() {
   const [ShowTodoslistError, setShowTodoslistError] = useState(false)
   const [showTodoslist, setShowTodoslist] = useState()
   const [userTodoslist, setUserTodoslist] = useState([])
-
+  
   //salvar a foto no firebase
   useEffect(() => {
     if (file) {
       handleFileUpload(file);
     }
+   
   }, [file]);
 
   const handleFileUpload = (file) => {
@@ -50,29 +50,10 @@ export default function ShowTodolist() {
     )
   }
 
-  const handleFiter = async () => {
-    try {
-      const res = await fetch(`/api/user/todolist/get?${currentUser._id}`)
-      const data = await res.json()
-      console.log(...data)
-      if (data.length == 0) {
-        setShowTodoslist("{<p>Voce ainda não tem tarefas</p>}")
-      }
-      if (data.success === false) {
-        setShowTodoslistError(true)
-        console.log(setShowTodoslistError(true))
-      }
-      setUserTodoslist(data)
-    } catch (error) {
-      setShowTodoslistError(true)
-    }
-  }
-
   const handleShowTodoslist = async () => {
     try {
       const res = await fetch(`/api/user/todolist/${currentUser._id}`)
       const data = await res.json()
-      console.log(data)
       if (data.length == 0) {
         setShowTodoslist("{<p>Voce ainda não tem tarefas</p>}")
       }
@@ -102,14 +83,6 @@ export default function ShowTodolist() {
     }
   }
 
-  const handleChangeFilter = (e) => {
-    if (e.target.value === "a_fazer" || e.target.value === "fazendo" || e.target.value === "feito") {
-      setShowTodoslist(true)
-    } else {
-      setShowTodoslist(false)
-    }
-  }
-
   return (
     <ShowTodolistStyle>
       <ButtonGlobalStyle />
@@ -117,18 +90,17 @@ export default function ShowTodolist() {
         <h1>Suas tarefas</h1>
         {userTodoslist.length > 0 && (
           <div className={"todolistFilter"}>
-            <Link className={"linkButton"}>
-              <button onClick={handleFiter} value={"a_fazer"} className={"todoButtonFilterAll"}>A fazer</button>
+            <Link to={`search?searchTerm=a_fazer&sort`} className={"linkButton"}>
+              <button className={"todoButtonFilterAll"}>A fazer</button>
             </Link>
-            <Link className={"linkButton"}>
-              <button onChange={handleChangeFilter} value={"fazendo"} className={"todoButtonFilterDo"}>Fazendo</button>
+            <Link to={`search?searchTerm=fazendo&sort`} className={"linkButton"}>
+              <button type="submit" className={"todoButtonFilterDo"}>Fazendo</button>
             </Link>
-            <Link className={"linkButton"}>
-              <button onChange={handleChangeFilter} value={"feito"} className={"todoButtonFilterDone"}>Feito</button>
+            <Link to={`search?searchTerm=feito&sort`} className={"linkButton"}>
+              <button className={"todoButtonFilterDone"}>Feito</button>
             </Link>
           </div>
-          )
-        }
+        )}
         <div className="todolistButtons">
           <button onClick={handleShowTodoslist} className={"showButtonStyle"}>Mostrar tarefas</button>
           <Link to={"/create-todo-list"} >

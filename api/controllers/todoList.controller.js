@@ -64,15 +64,13 @@ export const getListing = async (req, res, next) => {
 export const getListings = async (req, res, next) => {
   try {    
 
-    const startIndex = parseInt(req.query.startIndex) || 0
-
     const searchTerm = req.query.searchTerm || ''
 
     const sort ='createdAt'
 
     const order ='desc'
 
-    const todoslist = await TodoList.find({statusType:searchTerm}).sort({[sort]: order}).skip(startIndex)
+    const todoslist = await TodoList.find({statusType:searchTerm}).sort({[sort]: order})
 
     console.log(todoslist)
     return res.status(200).json(todoslist)
