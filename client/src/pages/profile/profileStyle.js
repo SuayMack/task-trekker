@@ -1,17 +1,25 @@
 import styled from "styled-components";
 
 export const ProfileStyle = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 15px;
-
-  .profile {
   display: flex;
   align-items: center;
   justify-content: center;
-   gap: 12px;
-   padding: 10px;
+  gap: 15px;
+
+  .profileSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+
+  .profileForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
   }
 
   .avatar {
@@ -28,14 +36,6 @@ export const ProfileStyle = styled.div`
     cursor: pointer;
   }
 
-  .profileForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-  }
-
   .profileInput {
     padding: 10px;
     border-radius: 10px;
@@ -47,28 +47,6 @@ export const ProfileStyle = styled.div`
     font-size: 16px;
   }
 
-  .error, .progress, .success {
-    text-align: start;
-    padding: 10px;
-    font-size: smaller;
-  }
-
-  .error {
-    color: red;
-  }
-
-  .progress {
-    color: blue;
-  }
-
-  .success {
-    color: green;
-  }
-
- .createButtonStyle {
-    background-color: green;
-  }
-
   .editarAvatarButton {
     display: flex;
     align-items: center;
@@ -76,83 +54,25 @@ export const ProfileStyle = styled.div`
     width: 80%;
   }
 
-  .profileSection {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
+  .updateButtonStyle{
+    background-color: #454ADE;
   }
 
-  .todoLi {
-    list-style: none;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: var(--background-light);
-    color: var(--text);
-  }
-
-  .showTodosList {
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
-    width: 480px;
-    border-radius: 10px;
-  }
-  .showTodosList > h1 {
-    text-align: center;
-  }
-
-  .showTodoLink {
-    pointer-events: none;
-  }
-
-  .showTodoLinks {
-    
+  .deleteAccountButton {
+    width: 300px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
-    background-color: var(--background-secundary);
-    border-radius: 10px;
-    margin: 20px;
+    cursor: pointer;
+    background-color: red;
+    opacity: 0.8;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    transition: 0.3s;
   }
 
-  li.showTodoLi {
-    color: var(--text);
-    padding: 10px;
-
-  }
-
-  li.showTodoLi:hover {
-    background: var(--caption);
-  }
-
-  .profileLinkButton {
-    padding: 10px;
-  }
-
-  .todolistButtons {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .deleteTodoButton, .editTodoButton {
-    width: fit-content;
-    background-color: Transparent;
-    background-repeat:no-repeat;
-    border: none;
-    cursor:pointer;
-    overflow: hidden;     
-  }
-
-  .deleteTodoButton{
-    color: red;
-  }
-
-  .editTodoButton {
-    color: green;
+  .updateButtonStyle:hover, .deleteAccountButton:hover {
+    transform: scale(1.1)
   }
 
   .qtddTasks {

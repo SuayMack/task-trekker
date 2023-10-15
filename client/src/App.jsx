@@ -1,5 +1,4 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Profile from './pages/Profile'
 import SignIn from './pages/SignIn/SignIn.jsx'
 import SignUp from './pages/SignUp/SignUp.jsx'
 import Header from './components/Header/Header.jsx'
@@ -7,7 +6,8 @@ import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx'
 import CreateTodoList from './pages/CreateTodoList/CreateTodoList.jsx'
 import UpdateTodoList from './pages/UpdateTodolist/UpdateTodolist.jsx'
 import Home from './pages/Home/Home.jsx'
-import Search from './pages/Search/Search';
+import Search from './pages/Search/Search'
+import Profile from './pages/Profile/Profile.jsx'
 
 export default function App() {
   return (
