@@ -6,7 +6,7 @@ import path from 'path'
 
 import userRouter from './routes/user.route.js'
 import authRouter from './routes/auth.route.js'
-import todoRouter from './routes/todolist.route.js'
+import todoRouter from './routes/todoList.route.js'
 
 dotenv.config()
 

@@ -1,5 +1,5 @@
 import express from 'express'
-import { createTodoList, deleteTodoList, updateTodoList, getListing, getListings } from '../controllers/todolist.controller.js'
+import { createTodoList, deleteTodoList, updateTodoList, getListing, getListings } from '../controllers/todoList.controller.js'
 import { verifyToken } from '../utils/verifyUser.js'
 
 const router = express.Router()

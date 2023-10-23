@@ -16,6 +16,9 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     border: 0;
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
   }
 
   body {
